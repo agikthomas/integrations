@@ -33,7 +33,7 @@ packages_to_test=0
 
 for package in ${PACKAGE_LIST}; do
     # Check if the package name begins with "aws"
-    if [[ "${package}" != aws* ]]; then
+    if [[ "${package}" != aws_bedrock* ]]; then
         continue
     fi
     # check if needed to create an step for this package
@@ -59,6 +59,8 @@ for package in ${PACKAGE_LIST}; do
         FORCE_CHECK_ALL: "${FORCE_CHECK_ALL}"
         SERVERLESS: "false"
         UPLOAD_SAFE_LOGS: ${UPLOAD_SAFE_LOGS}
+        AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+        AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       artifact_paths:
         - build/test-results/*.xml
         - build/test-coverage/*.xml
