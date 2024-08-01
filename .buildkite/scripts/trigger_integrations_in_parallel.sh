@@ -33,9 +33,12 @@ packages_to_test=0
 
 for package in ${PACKAGE_LIST}; do
     # Check if the package name begins with "aws"
-    if [[ "${package}" != aws_bedrock* && "${package}" != oracle* && "${package}" != influx* ]]; then
+    if [[ "${package}" != aws_bedrock* && "${package}" != influx* ]]; then
         continue
     fi
+    # if [[ "${package}" != aws_bedrock* && "${package}" != oracle* && "${package}" != influx* ]]; then
+    #     continue
+    # fi
     # check if needed to create an step for this package
     pushd "packages/${package}" > /dev/null
     skip_package="false"
