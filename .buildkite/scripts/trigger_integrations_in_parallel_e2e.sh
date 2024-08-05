@@ -69,7 +69,7 @@ for package in ${PACKAGE_LIST}; do
         BUILDKITE_BUILD_CHECKOUT_PATH: "/var/lib/buildkite-agent/e2e_integrations_individual"
       plugins:
       - hasura/smooth-checkout#v4.4.1:
-          #delete_checkout: true
+          delete_checkout: true
           repos:
             - config:
               - url: git@github.com:agikthomas/integrations.git
