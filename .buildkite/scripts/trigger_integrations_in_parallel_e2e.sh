@@ -58,7 +58,7 @@ for package in ${PACKAGE_LIST}; do
       key: "test-integrations-${package}"
       command: |
         cd integrations
-        .buildkite/scripts/test_one_package.sh ${package} ${from} ${to}"
+        .buildkite/scripts/test_one_package.sh ${package} ${from} ${to}
       env:
         STACK_VERSION: "${STACK_VERSION}"
         FORCE_CHECK_ALL: "${FORCE_CHECK_ALL}"
