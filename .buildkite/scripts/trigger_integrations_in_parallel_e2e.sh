@@ -56,7 +56,9 @@ for package in ${PACKAGE_LIST}; do
     cat << EOF >> ${PIPELINE_FILE}
     - label: "Check integrations ${package}"
       key: "test-integrations-${package}"
-      command: ".buildkite/scripts/test_one_package.sh ${package} ${from} ${to}"
+      command: |
+        cd e2e_integrations_individual
+        .buildkite/scripts/test_one_package.sh ${package} ${from} ${to}"
       env:
         STACK_VERSION: "${STACK_VERSION}"
         FORCE_CHECK_ALL: "${FORCE_CHECK_ALL}"
@@ -64,6 +66,16 @@ for package in ${PACKAGE_LIST}; do
         UPLOAD_SAFE_LOGS: ${UPLOAD_SAFE_LOGS}
         AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
         AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+        BUILDKITE_BUILD_CHECKOUT_PATH: "/var/lib/buildkite-agent/e2e_integrations_individual"
+      plugins:
+      - hasura/smooth-checkout#v4.4.1:
+          #delete_checkout: true
+          repos:
+            - config:
+              - url: git@github.com:agikthomas/integrations.git
+            - config:
+              - url: git@github.com:agithomas/integrations-e2e-tests.git
+                ssh_key_path: /var/lib/buildkite-agent/.ssh/id_ed25519
       artifact_paths:
         - build/test-results/*.xml
         - build/test-coverage/*.xml
