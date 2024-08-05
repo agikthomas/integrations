@@ -77,11 +77,11 @@ for package in ${PACKAGE_LIST}; do
               - url: git@github.com:agithomas/integrations-e2e-tests.git
                 ssh_key_path: /var/lib/buildkite-agent/.ssh/id_ed25519
       artifact_paths:
-        - build/test-results/*.xml
-        - build/test-coverage/*.xml
-        - build/benchmark-results/*.json
-        - build/elastic-stack-dump/*/logs/*.log
-        - build/elastic-stack-dump/*/logs/fleet-server-internal/**/*
+        - integrations/build/test-results/*.xml
+        - integrations/build/test-coverage/*.xml
+        - integrations/build/benchmark-results/*.json
+        - integrations/build/elastic-stack-dump/*/logs/*.log
+        - integrations/build/elastic-stack-dump/*/logs/fleet-server-internal/**/*
 EOF
 done
 
