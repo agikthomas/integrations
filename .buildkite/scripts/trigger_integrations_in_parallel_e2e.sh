@@ -57,7 +57,7 @@ for package in ${PACKAGE_LIST}; do
     - label: "Check integrations ${package}"
       key: "test-integrations-${package}"
       command: |
-        cd e2e_integrations_individual
+        cd integrations
         .buildkite/scripts/test_one_package.sh ${package} ${from} ${to}"
       env:
         STACK_VERSION: "${STACK_VERSION}"
