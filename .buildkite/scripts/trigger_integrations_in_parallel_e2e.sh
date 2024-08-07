@@ -71,8 +71,10 @@ for package in ${PACKAGE_LIST}; do
         AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
         ELASTICSEARCH_ENDPOINT: ${ELASTICSEARCH_ENDPOINT}
         ELASTIC_CLOUD_ID: ${ELASTIC_CLOUD_ID}
+        ELASTICSEARCH_API_KEY=${ELASTICSEARCH_API_KEY}
         BUILDKITE_BUILD_CHECKOUT_PATH: "/var/lib/buildkite-agent/e2e_integrations_individual"
         ELASTICSEARCH_INDEX_INTEGRATION_PKGS_JUNIT_SYSTEMTEST: "/var/lib/buildkite-agent/e2e_integrations_individual/integrations/build/test-results/"
+        
       plugins:
       - hasura/smooth-checkout#v4.4.1:
           delete_checkout: true
