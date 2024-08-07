@@ -59,6 +59,9 @@ for package in ${PACKAGE_LIST}; do
       command: |
         cd integrations
         .buildkite/scripts/test_one_package.sh ${package} ${from} ${to}
+        cd ../integrations-e2e-tests/buildkite/scripts
+        python3 integrationpkg_populate_integration_junit_to_es.py
+        
       env:
         STACK_VERSION: "${STACK_VERSION}"
         FORCE_CHECK_ALL: "${FORCE_CHECK_ALL}"
@@ -67,6 +70,7 @@ for package in ${PACKAGE_LIST}; do
         AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
         AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
         BUILDKITE_BUILD_CHECKOUT_PATH: "/var/lib/buildkite-agent/e2e_integrations_individual"
+        ELASTICSEARCH_INDEX_INTEGRATION_PKGS_JUNIT_SYSTEMTEST: "/var/lib/buildkite-agent/e2e_integrations_individual/integrations/build/test-results/"
       plugins:
       - hasura/smooth-checkout#v4.4.1:
           delete_checkout: true
